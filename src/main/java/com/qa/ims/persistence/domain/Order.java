@@ -8,7 +8,6 @@ public class Order {
 	private Long units;
 	private double total_value;
 	
-		
 	public Long getOrder_id() {
 		return order_id;
 	}
@@ -39,10 +38,7 @@ public class Order {
 	public void setTotal_value(double total_value) {
 		this.total_value = total_value;
 	}
-	
-	
-	
-	
+		
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -90,7 +86,20 @@ public class Order {
 		return true;
 	}
 	
-	
+	public Order(Long customer_id, Long item_id, Long units) {
+		super();
+		this.customer_id = customer_id;
+		this.item_id = item_id;
+		this.units = units;
+	}
+
+	public Order(Long order_id, Long item_id, Long units, double total_value) {
+		super();
+		this.order_id = order_id;
+		this.item_id = item_id;
+		this.units = units;
+		this.total_value = total_value;
+	}
 	public Order(Long order_id, Long customer_id, Long item_id, Long units, double total_value) {
 		super();
 		this.order_id = order_id;
