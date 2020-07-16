@@ -33,11 +33,12 @@ public class OrderDaoMysql implements Dao<Order> {
 		this.password = password;
 	}
 
-	Customer OrderFromResultSet(ResultSet resultSet) throws SQLException {
+	Order orderFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
-		String firstName = resultSet.getString("first_name");
-		String surname = resultSet.getString("surname");
-		return new Customer(id, firstName, surname);
+		Long customerID = resultSet.getLong("customer_id");
+		Long itemID = resultSet.getLong("item_id");
+		double units = resultSet.getDouble("units");
+		return new Order(id, customerID, itemID, units);
 	}
 
 	/**
@@ -52,7 +53,7 @@ public class OrderDaoMysql implements Dao<Order> {
 				ResultSet resultSet = statement.executeQuery("select * from orders");) {
 			ArrayList<Order> orders = new ArrayList<>();
 			while (resultSet.next()) {
-				orders.add(customerFromResultSet(resultSet));
+				orders.add(orderFromResultSet(resultSet));
 			}
 			return orders;
 		} catch (SQLException e) {
@@ -84,8 +85,8 @@ public class OrderDaoMysql implements Dao<Order> {
 	public Order create(Order order) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("insert into orders(customer_id, items_id, units) values('" + customer.getFirstName()
-					+ "','" + customer.getSurname() + "')");
+			statement.executeUpdate("insert into orders(customer_id, items_id, units) values('" + order.getCustomer_id()
+					+ "','" + order.getitem_id() + "','" + order.getUnits() + "')");
 			return readLatest();
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
@@ -94,12 +95,12 @@ public class OrderDaoMysql implements Dao<Order> {
 		return null;
 	}
 
-	public Customer readCustomer(Long id) {
+	public Order readItem(Long id) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT FROM customers where id = " + id);) {
+				ResultSet resultSet = statement.executeQuery("SELECT FROM items where id = " + id);) {
 			resultSet.next();
-			return customerFromResultSet(resultSet);
+			return orderFromResultSet(resultSet);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
@@ -108,23 +109,28 @@ public class OrderDaoMysql implements Dao<Order> {
 	}
 
 	/**
-	 * Updates a customer in the database
+	 * Updates an order in the database
 	 *
 	 * @param customer - takes in a customer object, the id field will be used to
 	 *                 update that customer in the database
 	 * @return
 	 */
 	@Override
-	public Customer update(Customer customer) {
+	public Order update(Order order) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("update customers set first_name ='" + customer.getFirstName() + "', surname ='"
-					+ customer.getSurname() + "' where id =" + customer.getId());
-			return readCustomer(customer.getId());
+			statement.executeUpdate("update orders set customer_id ='" + order.getCustomer_id() + "', items_id ='"
+					+ order.getitem_id() + "' where id =" + order.getOrder_id());
+			return readOrder(order.getOrder_id());
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
 		}
+		return null;
+	}
+
+	private Order readOrder(Long order_id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -137,7 +143,7 @@ public class OrderDaoMysql implements Dao<Order> {
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("delete from customers where id = " + id);
+			statement.executeUpdate("delete from order where id = " + id);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());

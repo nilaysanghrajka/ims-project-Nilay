@@ -33,11 +33,11 @@ public class ItemDaoMysql implements Dao<Item> {
 		this.password = password;
 	}
 
-	Customer ItemFromResultSet(ResultSet resultSet) throws SQLException {
+	Item itemFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
-		String firstName = resultSet.getString("first_name");
-		String surname = resultSet.getString("surname");
-		return new Customer(id, firstName, surname);
+		String itemName = resultSet.getString("item_name");
+		double value = resultSet.getDouble("item_value");
+		return new Item(id, itemName, value);
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class ItemDaoMysql implements Dao<Item> {
 				ResultSet resultSet = statement.executeQuery("select * from items");) {
 			ArrayList<Item> items = new ArrayList<>();
 			while (resultSet.next()) {
-				orders.add(customerFromResultSet(resultSet));
+				items.add(itemFromResultSet(resultSet));
 			}
 			return items;
 		} catch (SQLException e) {
@@ -84,8 +84,8 @@ public class ItemDaoMysql implements Dao<Item> {
 	public Item create(Item item) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("insert into items(item_name, item_value) values('" + item.getItem_name()
-					+ "','" + item.getItem_value() + "')");
+			statement.executeUpdate("insert into items(item_name, item_value) values('" + item.getitem_name()
+					+ "','" + item.getitem_value() + "')");
 			return readLatest();
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
@@ -94,12 +94,12 @@ public class ItemDaoMysql implements Dao<Item> {
 		return null;
 	}
 
-	public Customer readCustomer(Long id) {
+	public Item readItem(Long id) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT FROM customers where id = " + id);) {
+				ResultSet resultSet = statement.executeQuery("SELECT FROM items where id = " + id);) {
 			resultSet.next();
-			return customerFromResultSet(resultSet);
+			return itemFromResultSet(resultSet);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
@@ -108,19 +108,19 @@ public class ItemDaoMysql implements Dao<Item> {
 	}
 
 	/**
-	 * Updates a customer in the database
+	 * Updates an item in the database
 	 *
 	 * @param customer - takes in a customer object, the id field will be used to
 	 *                 update that customer in the database
 	 * @return
 	 */
 	@Override
-	public Customer update(Customer customer) {
+	public Item update(Item item) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("update customers set first_name ='" + customer.getFirstName() + "', surname ='"
-					+ customer.getSurname() + "' where id =" + customer.getId());
-			return readCustomer(customer.getId());
+			statement.executeUpdate("update items set item_name ='" + item.getitem_name() + "', value ='"
+					+ item.getitem_value() + "' where id =" + item.getitem_id());
+			return readItem (item.getitem_id());
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
@@ -137,7 +137,7 @@ public class ItemDaoMysql implements Dao<Item> {
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("delete from customers where id = " + id);
+			statement.executeUpdate("delete from items where id = " + id);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
