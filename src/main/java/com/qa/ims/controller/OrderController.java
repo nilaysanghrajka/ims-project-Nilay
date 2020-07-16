@@ -67,7 +67,7 @@ public static final Logger LOGGER = Logger.getLogger(OrderController.class);
 		LOGGER.info("Please enter the new total.");
 		double value = Double.valueOf(getInput());
 
-		Order order = orderService.update(new Order(id, item_id, units, units, units));
+		Order order = orderService.update(new Order(id, item_id, units, value));
 		LOGGER.info("Order updated");
 		return order;
 	}
