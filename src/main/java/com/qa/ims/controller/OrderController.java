@@ -4,25 +4,24 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.services.CrudServices;
 import com.qa.ims.utils.Utils;
 
 public class OrderController implements CrudController<Order> {
-	
+
 public static final Logger LOGGER = Logger.getLogger(OrderController.class);
-	
+
 	private CrudServices<Order> orderService;
-	
+
 	public OrderController(CrudServices<Order> orderService) {
 		this.orderService = orderService;
 	}
-	
+
 	String getInput() {
 		return Utils.getInput();
 	}
-	
+
 	/**
 	 * Reads all orders to the logger
 	 */
@@ -58,16 +57,16 @@ public static final Logger LOGGER = Logger.getLogger(OrderController.class);
 	public Order update() {
 		LOGGER.info("Please enter the id of the order you would like to update");
 		Long id = Long.valueOf(getInput());
-		
+
 		LOGGER.info("Please enter the Item ID you would like to update.");
 		Long item_id = Long.valueOf(getInput());
-		
+
 		LOGGER.info("Please enter the amount of units you would like to update.");
 		Long units = Long.valueOf(getInput());
-		
+
 		LOGGER.info("Please enter the new total.");
 		double value = Double.valueOf(getInput());
-		
+
 		Order order = orderService.update(new Order(id, item_id, units, units, units));
 		LOGGER.info("Order updated");
 		return order;
