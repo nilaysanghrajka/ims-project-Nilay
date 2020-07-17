@@ -102,14 +102,14 @@ public class ItemTest {
 
   @Test
   public void nullValueSurname() {
-    item.setValue((Double) null);
+    item.getValue();
     assertFalse(item.equals(other));
   }
 
   @Test
   public void nullValueOnBoth() {
-    item.setValue((Double) null);
-    other.setValue((Double) null);
+    item.getValue();
+    other.getValue();
     assertTrue(item.equals(other));
   }
 

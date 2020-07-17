@@ -52,7 +52,7 @@ public class OrderDaoMysqlTest {
 
 	static String jdbcurl = "jdbc:mysql://" + Utils.MYSQL_URL + "/ims";
 	static String username = "root";
-	static String password = "root";
+	static String password = "Pr1yanka20";
 
 //	@BeforeClass
 //	public static void setup() {
