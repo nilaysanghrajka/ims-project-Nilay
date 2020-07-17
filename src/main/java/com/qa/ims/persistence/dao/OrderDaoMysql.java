@@ -85,8 +85,8 @@ public class OrderDaoMysql implements Dao<Order> {
 	public Order create(Order order) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("insert into orders(customer_id, items_id, units) values('" + order.getCustomer_id()
-					+ "','" + order.getitem_id() + "','" + order.getUnits() + "')");
+			statement.executeUpdate("insert into orders(customer_id, items_id, units) values('" + order.getCustomerID()
+					+ "','" + order.getItemID() + "','" + order.getUnits() + "')");
 			return readLatest();
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
@@ -95,10 +95,10 @@ public class OrderDaoMysql implements Dao<Order> {
 		return null;
 	}
 
-	public Order readItem(Long id) {
+	public Order readOrder(Long id) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT FROM items where id = " + id);) {
+				ResultSet resultSet = statement.executeQuery("SELECT FROM orders where id = " + id);) {
 			resultSet.next();
 			return orderFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -119,18 +119,13 @@ public class OrderDaoMysql implements Dao<Order> {
 	public Order update(Order order) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("update orders set customer_id ='" + order.getCustomer_id() + "', items_id ='"
-					+ order.getitem_id() + "' where id =" + order.getOrder_id());
-			return readOrder(order.getOrder_id());
+			statement.executeUpdate("update orders set customer_id ='" + order.getCustomerID() + "', items_id ='"
+					+ order.getItemID() + "' where id =" + order.getId());
+			return readOrder(order.getId());
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
 		}
-		return null;
-	}
-
-	private Order readOrder(Long order_id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

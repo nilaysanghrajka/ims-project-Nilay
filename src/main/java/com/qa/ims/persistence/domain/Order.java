@@ -2,56 +2,64 @@ package com.qa.ims.persistence.domain;
 
 public class Order {
 	
-	private Long order_id;
-	private Long customer_id;
-	private Long item_id;
-	private Long units;
-	private double total_value;
+	private Long id;
+	private Long customerID;
+	private Long itemID;
+	private double Units;
 	
-	public Long getOrder_id() {
-		return order_id;
+	public Order(Long id, Long customerID, Long itemID, double units) {
+		super();
+		this.id = id;
+		this.customerID = customerID;
+		this.itemID = itemID;
+		Units = units;
 	}
-	public void setOrder_id(Long order_id) {
-		this.order_id = order_id;
+
+	public Long getId() {
+		return id;
 	}
-	public Long getCustomer_id() {
-		return customer_id;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setCustomer_id(Long customer_id) {
-		this.customer_id = customer_id;
+
+	public Long getCustomerID() {
+		return customerID;
 	}
-	public Long getitem_id() {
-		return item_id;
+
+	public void setCustomerID(Long customerID) {
+		this.customerID = customerID;
 	}
-	public void setitem_id(Long item_id) {
-		this.item_id = item_id;
+
+	public Long getItemID() {
+		return itemID;
 	}
-	public Long getUnits() {
-		return units;
+
+	public void setItemID(Long itemID) {
+		this.itemID = itemID;
 	}
-	public void setUnits(Long units) {
-		this.units = units;
+
+	public double getUnits() {
+		return Units;
 	}
-	public double getTotal_value() {
-		return total_value;
+
+	public void setUnits(double units) {
+		Units = units;
 	}
-	public void setTotal_value(double total_value) {
-		this.total_value = total_value;
-	}
-		
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((customer_id == null) ? 0 : customer_id.hashCode());
-		result = prime * result + ((order_id == null) ? 0 : order_id.hashCode());
-		result = prime * result + ((item_id == null) ? 0 : item_id.hashCode());
 		long temp;
-		temp = Double.doubleToLongBits(total_value);
+		temp = Double.doubleToLongBits(Units);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((units == null) ? 0 : units.hashCode());
+		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((itemID == null) ? 0 : itemID.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -61,52 +69,24 @@ public class Order {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		if (customer_id == null) {
-			if (other.customer_id != null)
-				return false;
-		} else if (!customer_id.equals(other.customer_id))
+		if (Double.doubleToLongBits(Units) != Double.doubleToLongBits(other.Units))
 			return false;
-		if (order_id == null) {
-			if (other.order_id != null)
+		if (customerID == null) {
+			if (other.customerID != null)
 				return false;
-		} else if (!order_id.equals(other.order_id))
+		} else if (!customerID.equals(other.customerID))
 			return false;
-		if (item_id == null) {
-			if (other.item_id != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!item_id.equals(other.item_id))
+		} else if (!id.equals(other.id))
 			return false;
-		if (Double.doubleToLongBits(total_value) != Double.doubleToLongBits(other.total_value))
-			return false;
-		if (units == null) {
-			if (other.units != null)
+		if (itemID == null) {
+			if (other.itemID != null)
 				return false;
-		} else if (!units.equals(other.units))
+		} else if (!itemID.equals(other.itemID))
 			return false;
 		return true;
 	}
 	
-	public Order(Long customer_id, Long item_id, Long units) {
-		super();
-		this.customer_id = customer_id;
-		this.item_id = item_id;
-		this.units = units;
-	}
-
-	public Order(Long order_id, Long item_id, Long units, double total_value) {
-		super();
-		this.order_id = order_id;
-		this.item_id = item_id;
-		this.units = units;
-		this.total_value = total_value;
-	}
-	public Order(Long order_id, Long customer_id, Long item_id, Long units, double total_value) {
-		super();
-		this.order_id = order_id;
-		this.customer_id = customer_id;
-		this.item_id = item_id;
-		this.units = units;
-		this.total_value = total_value;
-	}
-
-}
+}	

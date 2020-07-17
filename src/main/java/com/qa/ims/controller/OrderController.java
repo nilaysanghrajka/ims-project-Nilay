@@ -45,7 +45,7 @@ public static final Logger LOGGER = Logger.getLogger(OrderController.class);
 		Long item_id = Long.valueOf(getInput());
 		LOGGER.info("Please enter the amount of units you would like.");
 		Long units = Long.valueOf(getInput());
-		Order order = orderService.create(new Order(customer_id, item_id, units, units, units));
+		Order order = orderService.create(new Order(customer_id, item_id, units, units));
 		LOGGER.info("Order created");
 		return order;
 	}

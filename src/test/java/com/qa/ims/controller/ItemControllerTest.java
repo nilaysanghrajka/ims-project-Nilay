@@ -38,9 +38,9 @@ public class ItemControllerTest {
 	public void readAllTest() {
 		ItemController itemController = new ItemController(itemServices);
 		List<Item> items = new ArrayList<>();
-		items.add(new Item("Tshirt", 19.99));
-		items.add(new Item("Shirt", 49.99));
-		items.add(new Item("Socks", 5.00));
+		items.add(new Item(null, "Tshirt", 19.99));
+		items.add(new Item(null, "Shirt", 49.99));
+		items.add(new Item(null, "Socks", 5.00));
 		Mockito.when(itemServices.readAll()).thenReturn(items);
 		assertEquals(items, itemController.readAll());
 	}
@@ -51,7 +51,7 @@ public class ItemControllerTest {
 		double value = 25.00;
 		Mockito.doReturn(itemName, value).when(itemController).getInput();
 //   Mockito.doReturn(value).when(itemController).getDouble();
-		Item item = new Item(itemName, value);
+		Item item = new Item(null, itemName, value);
 		Item savedItem = new Item(2L, "Jeans", 25.00);
 		Mockito.when(itemServices.create(item)).thenReturn(savedItem);
 		assertEquals(savedItem, itemController.create());
