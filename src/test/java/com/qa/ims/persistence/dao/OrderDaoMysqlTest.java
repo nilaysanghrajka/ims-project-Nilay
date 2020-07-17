@@ -52,32 +52,32 @@ public class OrderDaoMysqlTest {
 
 	static String jdbcurl = "jdbc:mysql://" + Utils.MYSQL_URL + "/ims";
 	static String username = "root";
-	static String password = "Pr1yanka20";
+	static String password = "root";
 
-//	@BeforeClass
-//	public static void setup() {
-//		try {
-//			Connection connection = DriverManager.getConnection(jdbcurl, username, password);
-//			Statement statement = connection.createStatement();
-//			statement.executeUpdate("Drop database ims_test");
-//
-//		} catch (Exception e) {
-//			LOGGER.debug(e.getStackTrace());
-//			LOGGER.error(e.getMessage());
-//		}
-//	}
+	@BeforeClass
+	public static void setup() {
+		try {
+			Connection connection = DriverManager.getConnection(jdbcurl, username, password);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate("Drop database ims");
+
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+	}
 
 	@BeforeClass
 	public static void aInit() {
 		Ims ims = new Ims();
-		ims.init("jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root",
+		ims.init("jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root",
 				"src/test/resources/sql-schema.sql");
 	}
 
 	@Test
 	public void CreateTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		Long customerID = 1L;
 		Long itemID = 1L;
 		double units = 3;
@@ -98,7 +98,7 @@ public class OrderDaoMysqlTest {
 	@Test
 	public void ReadAllTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		List<Order> orders = new ArrayList<>();
 		orders.add(new Order(1L, 1L, 1L, 3));
 		orders.add(new Order(2L, 2L, 3L, 4));
@@ -110,7 +110,7 @@ public class OrderDaoMysqlTest {
 	@Test
 	public void ReadLatestTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		Order order = new Order(2L, 2L, 3L, 4);
 		assertEquals(order, orderDaoMysql.readLatest());
 	}
@@ -118,7 +118,7 @@ public class OrderDaoMysqlTest {
 	@Test
 	public void ReadOrderTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		Order order = new Order(2L, 2L, 3L, 4);
 		assertEquals(order, orderDaoMysql.readOrder(2L));
 	}
@@ -130,7 +130,7 @@ public class OrderDaoMysqlTest {
 	@Test
 	public void UpdateTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		Long id = 1L;
 		Long customerID = 1L;
 		Long itemID = 1L;
@@ -145,7 +145,7 @@ public class OrderDaoMysqlTest {
 	@Test
 	public void gDeleteTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		String id = "3";
 		orderDaoMysql.delete(Long.parseLong(id));
 		List<Order> orders = new ArrayList<>();

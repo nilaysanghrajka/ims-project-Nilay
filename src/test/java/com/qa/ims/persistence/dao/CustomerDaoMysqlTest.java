@@ -54,30 +54,30 @@ public class CustomerDaoMysqlTest {
 	static String username = "root";
 	static String password = "root";
 
-//	@BeforeClass
-//	public static void setup() {
-//		try {
-//			Connection connection = DriverManager.getConnection(jdbcurl, username, password);
-//			Statement statement = connection.createStatement();
-//			statement.executeUpdate("Drop database ims_test");
-//
-//		} catch (Exception e) {
-//			LOGGER.debug(e.getStackTrace());
-//			LOGGER.error(e.getMessage());
-//		}
-//	}
+	@BeforeClass
+	public static void setup() {
+		try {
+			Connection connection = DriverManager.getConnection(jdbcurl, username, password);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate("Drop database ims");
+
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+	}
 
 	@BeforeClass
 	public static void Init() {
 		Ims ims = new Ims();
-		ims.init("jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root",
+		ims.init("jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root",
 				"src/test/resources/sql-schema.sql");
 	}
 
 	@Test
 	public void CreateTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		String firstName = "Chris";
 		String surname = "Perrins";
 		Customer customer = new Customer(1L, firstName, surname);
@@ -95,7 +95,7 @@ public class CustomerDaoMysqlTest {
 	@Test
 	public void ReadAllTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		List<Customer> customers = new ArrayList<>();
 		customers.add(new Customer(1L, "Chris", "Perrins"));
 		customers.add(new Customer(2L, "Rhys", "Thompson"));
@@ -107,7 +107,7 @@ public class CustomerDaoMysqlTest {
 	@Test
 	public void ReadLatestTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		Customer customer = new Customer(3L, "Nic", "Johnson");
 		assertEquals(customer, customerDaoMysql.readLatest());
 	}
@@ -115,7 +115,7 @@ public class CustomerDaoMysqlTest {
 	@Test
 	public void ReadCustomerTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		Customer customer = new Customer(2L, "Rhys", "Thompson");
 		assertEquals(customer, customerDaoMysql.readCustomer(2L));
 	}
@@ -127,7 +127,7 @@ public class CustomerDaoMysqlTest {
 	@Test
 	public void UpdateTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		Long id = 1L;
 		String firstName = "Chris";
 		String surname = "Perrins";
@@ -141,7 +141,7 @@ public class CustomerDaoMysqlTest {
 	@Test
 	public void DeleteTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		String id = "3";
 		customerDaoMysql.delete(Long.parseLong(id));
 		List<Customer> customers = new ArrayList<>();

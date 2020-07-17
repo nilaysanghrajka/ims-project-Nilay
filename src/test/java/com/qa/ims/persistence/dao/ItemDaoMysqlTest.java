@@ -46,38 +46,38 @@ public class ItemDaoMysqlTest {
 	private ItemController itemController;
 
 	public static final Logger LOGGER = Logger.getLogger(Ims.class);
-//	static String jdbcurl = "jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC";
-//	static String username = "root";
-//	static String password = "root";
-
-	static String jdbcurl = "jdbc:mysql://" + Utils.MYSQL_URL + "/ims";
+	static String jdbcurl = "jdbc:mysql://localhost:3306/ims?serverTimezone=UTC";
 	static String username = "root";
-	static String password = "Pr1yanka20";
+	static String password = "root";
 
-//	@BeforeClass
-//	public static void setup() {
-//		try {
-//			Connection connection = DriverManager.getConnection(jdbcurl, username, password);
-//			Statement statement = connection.createStatement();
-//			statement.executeUpdate("Drop database ims_test");
-//
-//		} catch (Exception e) {
-//			LOGGER.debug(e.getStackTrace());
-//			LOGGER.error(e.getMessage());
-//		}
-//	}
+	// static String jdbcurl = "jdbc:mysql://" + Utils.MYSQL_URL + "/ims";
+	// static String username = "root";
+	// static String password = "root";
+
+	@BeforeClass
+	public static void setup() {
+		try {
+			Connection connection = DriverManager.getConnection(jdbcurl, username, password);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate("Drop database ims");
+
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+	}
 
 	@BeforeClass
 	public static void Init() {
 		Ims ims = new Ims();
-		ims.init("jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root",
+		ims.init("jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root",
 				"src/test/resources/sql-schema.sql");
 	}
 
 	@Test
 	public void CreateTest() {
 		ItemDaoMysql itemDaoMysql = new ItemDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		String itemName = "Jacket";
 		double value = 40.50;
 		Item item = new Item(1L, itemName, value);
@@ -95,7 +95,7 @@ public class ItemDaoMysqlTest {
 	@Test
 	public void ReadAllTest() {
 		ItemDaoMysql itemDaoMysql = new ItemDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		List<Item> items = new ArrayList<>();
 		items.add(new Item(1L, "Jacket", 40.50));
 		items.add(new Item(2L, "Blazer", 120.50));
@@ -107,7 +107,7 @@ public class ItemDaoMysqlTest {
 	@Test
 	public void ReadLatestTest() {
 		ItemDaoMysql itemDaoMysql = new ItemDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		Item item = new Item(3L, "Slippers", 12.99);
 		assertEquals(item, itemDaoMysql.readLatest());
 	}
@@ -115,7 +115,7 @@ public class ItemDaoMysqlTest {
 	@Test
 	public void ReadItemTest() {
 		ItemDaoMysql itemDaoMysql = new ItemDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		Item item = new Item(2L, "Blazer", 120.50);
 		assertEquals(item, itemDaoMysql.readItem(2L));
 	}
@@ -127,7 +127,7 @@ public class ItemDaoMysqlTest {
 	@Test
 	public void UpdateTest() {
 		ItemDaoMysql itemDaoMysql = new ItemDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		Long id = 1L;
 		String itemName = "Jacket";
 		double value = 40.50;
@@ -141,7 +141,7 @@ public class ItemDaoMysqlTest {
 	@Test
 	public void DeleteTest() {
 		ItemDaoMysql itemDaoMysql = new ItemDaoMysql(
-				"jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC", "root", "root");
+				"jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "root");
 		String id = "3";
 		itemDaoMysql.delete(Long.parseLong(id));
 		List<Item> items = new ArrayList<>();

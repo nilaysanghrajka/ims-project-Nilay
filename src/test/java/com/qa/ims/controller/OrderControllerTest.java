@@ -66,7 +66,7 @@ public class OrderControllerTest {
 		Long item_id = 4L;
 		Long units = 4L;
 		Mockito.doReturn(id, item_id, units).when(orderController).getInput();
-		Order order = new Order(1L, item_id, units, units);
+		Order order = new Order(1L, item_id, units, 0);
 		Mockito.when(orderServices.update(order)).thenReturn(order);
 		assertEquals(order, orderController.update());
 	}
