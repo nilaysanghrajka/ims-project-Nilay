@@ -46,7 +46,7 @@ public class CustomerDaoMysqlTest {
 	private CustomerController customerController;
 
 	public static final Logger LOGGER = Logger.getLogger(Ims.class);
-//	static String jdbcurl = "jdbc:mysql://localhost:3306/ims_test?serverTimezone=UTC";
+//	static String jdbcurl = "jdbc:mysql://localhost:3306/ims?serverTimezone=UTC";
 //	static String username = "root";
 //	static String password = "root";
 
@@ -120,10 +120,10 @@ public class CustomerDaoMysqlTest {
 		assertEquals(customer, customerDaoMysql.readCustomer(2L));
 	}
 
-//
-//	/**
-//	 *
-//	 */
+
+	/**
+	 *
+	 */
 	@Test
 	public void UpdateTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(
@@ -135,9 +135,9 @@ public class CustomerDaoMysqlTest {
 		assertEquals(customer, customerDaoMysql.update(customer));
 	}
 
-//	/**
-//	 * makes sure that after you delete, the entry is no longer in the database.
-//	 */
+	/**
+	 * makes sure that after you delete, the entry is no longer in the database.
+	 */
 	@Test
 	public void DeleteTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(

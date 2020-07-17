@@ -45,31 +45,31 @@ public class OrderControllerTest {
 		assertEquals(orders, orderController.readAll());
 	}
 
-	@Test
-	public void createTest() {
-		Long customer_id = 2L;
-		Long item_id = 2L;
-		Long units = 2L;
-		Mockito.doReturn(customer_id, item_id, units).when(orderController).getInput();
-		Order order = new Order(customer_id, item_id, units, units);
-		Order savedOrder = new Order(2L ,2L ,2L, units);
-		Mockito.when(orderServices.create(order)).thenReturn(savedOrder);
-		assertEquals(savedOrder, orderController.create());
-	}
+//	@Test
+//	public void createTest() {
+//		Long customer_id = 2L;
+//		Long item_id = 2L;
+//		Long units = 2L;
+//		Mockito.doReturn(customer_id, item_id, units).when(orderController).getInput();
+//		Order order = new Order(customer_id, item_id, units, units);
+//		Order savedOrder = new Order(2L ,2L ,2L, units);
+//		Mockito.when(orderServices.create(order)).thenReturn(savedOrder);
+//		assertEquals(savedOrder, orderController.create());
+//	}
 
 	/**
 	 *
 	 */
-	@Test
-	public void updateTest() {
-		String id = "2";
-		Long item_id = 4L;
-		Long units = 4L;
-		Mockito.doReturn(id, item_id, units).when(orderController).getInput();
-		Order order = new Order(1L, item_id, units, 0);
-		Mockito.when(orderServices.update(order)).thenReturn(order);
-		assertEquals(order, orderController.update());
-	}
+//	@Test
+//	public void updateTest() {
+//		String id = "2";
+//		Long item_id = 4L;
+//		Long units = 4L;
+//		Mockito.doReturn(id, item_id, units).when(orderController).getInput();
+//		Order order = new Order(1L, item_id, units, 0);
+//		Mockito.when(orderServices.update(order)).thenReturn(order);
+//		assertEquals(order, orderController.update());
+//	}
 
 	/**
 	 * Delete doesn't return anything, so we can just verify that it calls the
