@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: com.qa.ims.persistence.domain.ItemTest
+-------------------------------------------------------------------------------
+Tests run: 19, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.047 s <<< FAILURE! - in com.qa.ims.persistence.domain.ItemTest
+com.qa.ims.persistence.domain.ItemTest.nullValueSurname  Time elapsed: 0 s  <<< FAILURE!
+java.lang.AssertionError
+	at com.qa.ims.persistence.domain.ItemTest.nullValueSurname(ItemTest.java:106)
+
+com.qa.ims.persistence.domain.ItemTest.otherValueDifferent  Time elapsed: 0 s  <<< FAILURE!
+java.lang.AssertionError
+	at com.qa.ims.persistence.domain.ItemTest.otherValueDifferent(ItemTest.java:119)
+
+com.qa.ims.persistence.domain.ItemTest.toStringTest  Time elapsed: 0.003 s  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<[id:1 first name:Chris surname:Perrins]> but was:<[com.qa.ims.persistence.domain.Item@83474a61]>
+	at com.qa.ims.persistence.domain.ItemTest.toStringTest(ItemTest.java:144)
+
+com.qa.ims.persistence.domain.ItemTest.settersTest  Time elapsed: 0.001 s  <<< FAILURE!
+java.lang.AssertionError: expected null, but was:<19.99>
+	at com.qa.ims.persistence.domain.ItemTest.settersTest(ItemTest.java:34)
+

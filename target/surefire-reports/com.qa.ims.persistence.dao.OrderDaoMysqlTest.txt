@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: com.qa.ims.persistence.dao.OrderDaoMysqlTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 0.57 s <<< FAILURE! - in com.qa.ims.persistence.dao.OrderDaoMysqlTest
+com.qa.ims.persistence.dao.OrderDaoMysqlTest.CreateTest  Time elapsed: 0.049 s  <<< FAILURE!
+java.lang.AssertionError: expected:<com.qa.ims.persistence.domain.Order@63061b62> but was:<null>
+	at com.qa.ims.persistence.dao.OrderDaoMysqlTest.CreateTest(OrderDaoMysqlTest.java:93)
+
+com.qa.ims.persistence.dao.OrderDaoMysqlTest.ReadAllTest  Time elapsed: 0.063 s  <<< FAILURE!
+java.lang.AssertionError: expected:<[com.qa.ims.persistence.domain.Order@63061b62, com.qa.ims.persistence.domain.Order@5fe1f44, com.qa.ims.persistence.domain.Order@d77a2323]> but was:<[]>
+	at com.qa.ims.persistence.dao.OrderDaoMysqlTest.ReadAllTest(OrderDaoMysqlTest.java:107)
+
+com.qa.ims.persistence.dao.OrderDaoMysqlTest.ReadLatestTest  Time elapsed: 0.093 s  <<< FAILURE!
+java.lang.AssertionError: expected:<com.qa.ims.persistence.domain.Order@5fe1f44> but was:<null>
+	at com.qa.ims.persistence.dao.OrderDaoMysqlTest.ReadLatestTest(OrderDaoMysqlTest.java:115)
+
+com.qa.ims.persistence.dao.OrderDaoMysqlTest.ReadOrderTest  Time elapsed: 0.058 s  <<< FAILURE!
+java.lang.AssertionError: expected:<com.qa.ims.persistence.domain.Order@5fe1f44> but was:<null>
+	at com.qa.ims.persistence.dao.OrderDaoMysqlTest.ReadOrderTest(OrderDaoMysqlTest.java:123)
+
+com.qa.ims.persistence.dao.OrderDaoMysqlTest.UpdateTest  Time elapsed: 0.056 s  <<< FAILURE!
+java.lang.AssertionError: expected:<com.qa.ims.persistence.domain.Order@63061b62> but was:<null>
+	at com.qa.ims.persistence.dao.OrderDaoMysqlTest.UpdateTest(OrderDaoMysqlTest.java:139)
+
+com.qa.ims.persistence.dao.OrderDaoMysqlTest.gDeleteTest  Time elapsed: 0.107 s  <<< FAILURE!
+java.lang.AssertionError: expected:<[com.qa.ims.persistence.domain.Order@d77a2323]> but was:<[]>
+	at com.qa.ims.persistence.dao.OrderDaoMysqlTest.gDeleteTest(OrderDaoMysqlTest.java:153)
+

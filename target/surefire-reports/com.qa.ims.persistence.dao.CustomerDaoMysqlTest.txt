@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: com.qa.ims.persistence.dao.CustomerDaoMysqlTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 3.127 s <<< FAILURE! - in com.qa.ims.persistence.dao.CustomerDaoMysqlTest
+com.qa.ims.persistence.dao.CustomerDaoMysqlTest.CreateTest  Time elapsed: 0.123 s  <<< FAILURE!
+java.lang.AssertionError: expected:<id:1 first name:Chris surname:Perrins> but was:<null>
+	at com.qa.ims.persistence.dao.CustomerDaoMysqlTest.CreateTest(CustomerDaoMysqlTest.java:90)
+
+com.qa.ims.persistence.dao.CustomerDaoMysqlTest.DeleteTest  Time elapsed: 0.15 s  <<< FAILURE!
+java.lang.AssertionError: expected:<[id:3 first name:Nic surname:Johnson]> but was:<[]>
+	at com.qa.ims.persistence.dao.CustomerDaoMysqlTest.DeleteTest(CustomerDaoMysqlTest.java:149)
+
+com.qa.ims.persistence.dao.CustomerDaoMysqlTest.ReadAllTest  Time elapsed: 0.064 s  <<< FAILURE!
+java.lang.AssertionError: expected:<[id:1 first name:Chris surname:Perrins, id:2 first name:Rhys surname:Thompson, id:3 first name:Nic surname:Johnson]> but was:<[]>
+	at com.qa.ims.persistence.dao.CustomerDaoMysqlTest.ReadAllTest(CustomerDaoMysqlTest.java:104)
+
+com.qa.ims.persistence.dao.CustomerDaoMysqlTest.ReadCustomerTest  Time elapsed: 0.073 s  <<< FAILURE!
+java.lang.AssertionError: expected:<id:2 first name:Rhys surname:Thompson> but was:<null>
+	at com.qa.ims.persistence.dao.CustomerDaoMysqlTest.ReadCustomerTest(CustomerDaoMysqlTest.java:120)
+
+com.qa.ims.persistence.dao.CustomerDaoMysqlTest.ReadLatestTest  Time elapsed: 0.079 s  <<< FAILURE!
+java.lang.AssertionError: expected:<id:3 first name:Nic surname:Johnson> but was:<null>
+	at com.qa.ims.persistence.dao.CustomerDaoMysqlTest.ReadLatestTest(CustomerDaoMysqlTest.java:112)
+
+com.qa.ims.persistence.dao.CustomerDaoMysqlTest.UpdateTest  Time elapsed: 0.072 s  <<< FAILURE!
+java.lang.AssertionError: expected:<id:1 first name:Chris surname:Perrins> but was:<null>
+	at com.qa.ims.persistence.dao.CustomerDaoMysqlTest.UpdateTest(CustomerDaoMysqlTest.java:135)
+

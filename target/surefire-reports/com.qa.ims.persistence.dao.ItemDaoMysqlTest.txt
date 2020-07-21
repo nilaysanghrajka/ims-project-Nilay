@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: com.qa.ims.persistence.dao.ItemDaoMysqlTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 0.668 s <<< FAILURE! - in com.qa.ims.persistence.dao.ItemDaoMysqlTest
+com.qa.ims.persistence.dao.ItemDaoMysqlTest.CreateTest  Time elapsed: 0.058 s  <<< FAILURE!
+java.lang.AssertionError: expected:<com.qa.ims.persistence.domain.Item@c400d96c> but was:<null>
+	at com.qa.ims.persistence.dao.ItemDaoMysqlTest.CreateTest(ItemDaoMysqlTest.java:90)
+
+com.qa.ims.persistence.dao.ItemDaoMysqlTest.DeleteTest  Time elapsed: 0.114 s  <<< FAILURE!
+java.lang.AssertionError: expected:<[com.qa.ims.persistence.domain.Item@fdf5452c]> but was:<[]>
+	at com.qa.ims.persistence.dao.ItemDaoMysqlTest.DeleteTest(ItemDaoMysqlTest.java:149)
+
+com.qa.ims.persistence.dao.ItemDaoMysqlTest.ReadAllTest  Time elapsed: 0.072 s  <<< FAILURE!
+java.lang.AssertionError: expected:<[com.qa.ims.persistence.domain.Item@c400d96c, com.qa.ims.persistence.domain.Item@181646ad, com.qa.ims.persistence.domain.Item@fdf5452c]> but was:<[]>
+	at com.qa.ims.persistence.dao.ItemDaoMysqlTest.ReadAllTest(ItemDaoMysqlTest.java:104)
+
+com.qa.ims.persistence.dao.ItemDaoMysqlTest.ReadItemTest  Time elapsed: 0.093 s  <<< FAILURE!
+java.lang.AssertionError: expected:<com.qa.ims.persistence.domain.Item@181646ad> but was:<null>
+	at com.qa.ims.persistence.dao.ItemDaoMysqlTest.ReadItemTest(ItemDaoMysqlTest.java:120)
+
+com.qa.ims.persistence.dao.ItemDaoMysqlTest.ReadLatestTest  Time elapsed: 0.069 s  <<< FAILURE!
+java.lang.AssertionError: expected:<com.qa.ims.persistence.domain.Item@fdf5452c> but was:<null>
+	at com.qa.ims.persistence.dao.ItemDaoMysqlTest.ReadLatestTest(ItemDaoMysqlTest.java:112)
+
+com.qa.ims.persistence.dao.ItemDaoMysqlTest.UpdateTest  Time elapsed: 0.059 s  <<< FAILURE!
+java.lang.AssertionError: expected:<com.qa.ims.persistence.domain.Item@c400d96c> but was:<null>
+	at com.qa.ims.persistence.dao.ItemDaoMysqlTest.UpdateTest(ItemDaoMysqlTest.java:135)
+
